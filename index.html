@@ -186,77 +186,77 @@
     }
 
     /* ✅ MOBILE RESPONSIVE FIXES */
-@media (max-width: 768px) {
-
-  /* ✅ Container spacing */
-  .container {
-    flex-direction: column;
-    align-items: center;
+    @media (max-width: 768px) {
+  
+    /* ✅ Container spacing */
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    /* ✅ MAIN HEADER */
+    .main-header {
+      padding: 20px 0;
+    }
+  
+    .main-header img {
+      height: 80px; /* smaller logo */
+      margin-bottom: 10px;
+    }
+  
+    /* ✅ NAVIGATION */
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+  
+    nav a {
+      margin: 0;
+      font-size: 16px;
+    }
+  
+    /* ✅ STICKY HEADER */
+    .sticky-header .container {
+      flex-direction: row; /* keep inline */
+      justify-content: space-between;
+    }
+  
+    .sticky-header img {
+      height: 40px;
+    }
+  
+    /* ✅ HERO */
+    .hero {
+      padding: 80px 20px 60px;
+    }
+  
+    .hero h1 {
+      font-size: 30px;
+    }
+  
+    .hero p {
+      font-size: 16px;
+    }
+  
+    /* ✅ SERVICES */
+    .services {
+      padding: 50px 20px;
+    }
+  
+    /* ✅ CONTACT */
+    .contact {
+      padding: 50px 20px;
+    }
+  
+    input, textarea {
+      max-width: 100%;
+    }
+  
+    /* ✅ FOOTER */
+    footer img {
+      height: 30px;
+    }
   }
-
-  /* ✅ MAIN HEADER */
-  .main-header {
-    padding: 20px 0;
-  }
-
-  .main-header img {
-    height: 80px; /* smaller logo */
-    margin-bottom: 10px;
-  }
-
-  /* ✅ NAVIGATION */
-  nav {
-    display: flex;
-    gap: 20px;
-  }
-
-  nav a {
-    margin: 0;
-    font-size: 16px;
-  }
-
-  /* ✅ STICKY HEADER */
-  .sticky-header .container {
-    flex-direction: row; /* keep inline */
-    justify-content: space-between;
-  }
-
-  .sticky-header img {
-    height: 40px;
-  }
-
-  /* ✅ HERO */
-  .hero {
-    padding: 80px 20px 60px;
-  }
-
-  .hero h1 {
-    font-size: 30px;
-  }
-
-  .hero p {
-    font-size: 16px;
-  }
-
-  /* ✅ SERVICES */
-  .services {
-    padding: 50px 20px;
-  }
-
-  /* ✅ CONTACT */
-  .contact {
-    padding: 50px 20px;
-  }
-
-  input, textarea {
-    max-width: 100%;
-  }
-
-  /* ✅ FOOTER */
-  footer img {
-    height: 30px;
-  }
-}
   </style>
 </head>
 
