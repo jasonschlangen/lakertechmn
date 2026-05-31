@@ -206,7 +206,7 @@
     }
   
     .main-header img {
-      height: 80px; /* smaller logo */
+      height: 160px;
       margin-bottom: 10px;
     }
   
@@ -264,6 +264,7 @@
     }
   }
   </style>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -328,6 +329,7 @@
   <div id="contact" class="contact">
     <h2>Contact Us</h2>
     <form id="contact-form">
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv"></div>
       <input type="text" id="name" placeholder="Your Name" required>
       <input type="email" id="email" placeholder="Your Email" required>
       <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
@@ -346,7 +348,7 @@
   </footer>
 
   <!-- ✅ SCRIPT -->
-  <script>
+ <script>
   // ✅ Sticky header behavior
   const stickyHeader = document.querySelector(".sticky-header");
 
@@ -365,13 +367,28 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
+    const button = form.querySelector("button");
+    button.disabled = true;
+    button.innerText = "Sending...";
+
     status.innerText = "Sending...";
+
+    const tokenField = document.querySelector('[name="cf-turnstile-response"]');
+    const token = tokenField ? tokenField.value : null;
 
     const data = {
       name: document.getElementById("name").value,
       email: document.getElementById("email").value,
-      message: document.getElementById("message").value
+      message: document.getElementById("message").value,
+      token: token
     };
+
+    if (!data.token) {
+      status.innerText = "❌ Verification failed. Please try again.";
+      button.disabled = false;
+      button.innerText = "Send Message";
+      return;
+    }
 
     try {
       const res = await fetch("https://lt-contact-01.jason-schlangen.workers.dev", {
@@ -385,13 +402,21 @@
       if (res.ok) {
         status.innerText = "✅ Message sent successfully!";
         form.reset();
+
+      } else if (res.status === 400) {
+        status.innerText = "❌ Verification failed. Please try again.";
+
       } else {
-        status.innerText = "❌ Error sending message.";
+        status.innerText = "❌ Something went wrong. Please try again.";
       }
+
     } catch (err) {
-      status.innerText = "❌ Network error.";
+      status.innerText = "❌ Network error. Please check your connection and try again.";
     }
+
+    button.disabled = false;
+    button.innerText = "Send Message";
   });
-  </script>
+</script>
 </body>
 </html>
