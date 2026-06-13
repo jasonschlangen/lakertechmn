@@ -1,65 +1,120 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Laker Tech dev</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Laker Tech</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png" />
 
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #1a73e8;
+      --primary-dark: #1558b0;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --radius: 14px;
+      --max-width: 1100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      background: #f8fafc;
-      color: #1f2937;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    /* ✅ CONTAINER (Fixes width issues globally) */
+    a {
+      color: inherit;
+    }
+
     .container {
-      max-width: 1100px;
+      max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 20px;
+    }
+
+    .section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 34px;
+      line-height: 1.2;
+      margin: 0 0 14px;
+      text-align: center;
+      letter-spacing: -0.4px;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* Main Header */
+    .main-header {
+      padding: 34px 0 10px;
+      background: transparent;
+    }
+
+    .main-header .header-wrap,
+    .sticky-header .header-wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    /* ✅ TOP HEADER */
-    .main-header {
-      padding: 40px 0;
+      gap: 20px;
     }
 
     .main-header img {
-      height: 220px;
+      height: 210px;
+      display: block;
     }
 
-    /* ✅ NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
     nav a {
-      margin-left: 40px;
       text-decoration: none;
-      color: #1f2937;
+      color: var(--text);
       font-weight: 600;
-      font-size: 20px;
+      font-size: 17px;
     }
 
     nav a:hover {
-      color: #1a73e8;
+      color: var(--primary);
     }
 
-    /* ✅ STICKY HEADER (FIXED WIDTH ISSUE) */
+    /* Sticky Header */
     .sticky-header {
       position: fixed;
       top: -120px;
       left: 0;
       width: 100%;
-      background: white;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
       z-index: 1000;
       opacity: 0;
@@ -70,353 +125,864 @@
       opacity: 1;
     }
 
-    .sticky-header img {
-      height: 100px;
-    }
-
     .sticky-header .container {
-      padding: 10px 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
-    /* ✅ HERO */
+    .sticky-header img {
+      height: 72px;
+      display: block;
+    }
+
+    .sticky-header nav a {
+      font-size: 15px;
+    }
+
+    /* Hero */
     .hero {
-      padding: 80px 20px 80px;
       text-align: center;
+      padding: 60px 0 80px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: 44px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
+      max-width: 820px;
+      margin: 0 auto 20px;
+      font-size: 50px;
+      line-height: 1.15;
+      letter-spacing: -0.7px;
     }
 
     .hero p {
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto;
-      margin-bottom: 30px;
-      font-size: 18px;
-      color: #6b7280;
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 25px;
+      font-size: 20px;
+      color: var(--muted);
     }
 
-    /* ✅ BUTTON */
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .btn {
-      margin-top: 30px;
-      padding: 14px 28px;
-      background: #1a73e8;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
       display: inline-block;
-      font-weight: 600;
-      box-shadow: 0 4px 14px rgba(26,115,232,0.3);
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
       transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-size: 16px;
     }
 
-    .btn:hover {
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(26,115,232,0.4);
+      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
     }
 
-    /* ✅ SERVICES */
-    .services {
-      max-width: 1100px;
-      margin: auto;
-      padding: 70px 20px;
+    .btn-secondary {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* Cards / Grid */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
+      gap: 24px;
     }
 
-    .service {
-      background: white;
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
       padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(229, 231, 235, 0.75);
+      height: 100%;
     }
 
-    .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
     }
 
-    .service p {
-      color: #6b7280;
+    .card p {
+      margin: 0;
+      color: var(--muted);
     }
 
-    /* ✅ CONTACT */
-    .contact {
+    .card ul {
+      margin: 14px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .card li + li {
+      margin-top: 8px;
+    }
+
+    /* Highlight band */
+    .highlight-band {
       background: white;
-      padding: 70px 20px;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* Trust section */
+    .trust-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .trust-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
       text-align: center;
     }
 
-    input, textarea {
-      width: 100%;
-      max-width: 420px;
-      margin: 10px auto;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+    .stat strong {
       display: block;
+      font-size: 28px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .stat span {
+      color: var(--muted);
       font-size: 14px;
     }
 
-    button {
-      background: #1a73e8;
-      color: white;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    /* Engagement */
+    .engagement-steps {
+      counter-reset: step;
+    }
+
+    .step-card {
+      position: relative;
+      padding-top: 58px;
+    }
+
+    .step-card::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e8f0fe;
+      color: var(--primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Testimonials */
+    .testimonial {
+      background: white;
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(229, 231, 235, 0.75);
+      height: 100%;
+    }
+
+    .testimonial p {
+      margin: 0 0 18px;
+      color: var(--text);
+      font-size: 17px;
+    }
+
+    .testimonial .quote-mark {
+      font-size: 40px;
+      line-height: 1;
+      color: #dbe7fb;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .testimonial .author {
+      color: var(--muted);
+      font-size: 15px;
       font-weight: 600;
     }
 
-    /* ✅ FOOTER */
+    /* Contact */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .contact-card,
+    .contact-info {
+      background: white;
+      border-radius: 18px;
+      padding: 34px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(229, 231, 235, 0.75);
+    }
+
+    .contact-info h3,
+    .contact-card h3 {
+      margin-top: 0;
+      margin-bottom: 14px;
+      font-size: 26px;
+    }
+
+    .contact-info p,
+    .contact-card p {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    .contact-points {
+      margin-top: 22px;
+    }
+
+    .contact-points div {
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .contact-points div:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin: 0 0 16px;
+      padding: 13px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    /* Footer */
     footer {
-      text-align: center;
-      padding: 40px 20px;
-      color: #6b7280;
       background: white;
       margin-top: 40px;
+      padding: 34px 20px 46px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
     }
 
     footer img {
-      height: 80px;
-      margin-bottom: 10px;
+      height: 72px;
+      margin-bottom: 12px;
     }
 
-    /* ✅ MOBILE RESPONSIVE FIXES */
-    @media (max-width: 768px) {
-  
-    /* ✅ Container spacing */
-    .container {
-      flex-direction: column;
-      align-items: center;
+    footer p {
+      margin: 6px 0;
     }
-  
-    /* ✅ MAIN HEADER */
-    .main-header {
-      padding: 20px 0;
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3,
+      .trust-stats,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .main-header .header-wrap {
+        flex-direction: column;
+      }
+
+      .main-header img {
+        height: 160px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .sticky-header .header-wrap {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .sticky-header img {
+        height: 50px;
+      }
+
+      .sticky-header nav {
+        gap: 14px;
+      }
+
+      .sticky-header nav a {
+        font-size: 13px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero p,
+      .section-intro {
+        font-size: 17px;
+      }
+
+      .section {
+        padding: 64px 0;
+      }
     }
-  
-    .main-header img {
-      height: 160px;
-      margin-bottom: 10px;
+
+    @media (max-width: 640px) {
+      .main-header {
+        padding: 22px 0 6px;
+      }
+
+      .main-header img {
+        height: 135px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .hero {
+        padding: 42px 0 64px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .card,
+      .testimonial,
+      .contact-card,
+      .contact-info,
+      .trust-box {
+        padding: 24px;
+      }
+
+      .sticky-header nav {
+        display: none;
+      }
     }
-  
-    /* ✅ NAVIGATION */
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-  
-    nav a {
-      margin: 0;
-      font-size: 16px;
-    }
-  
-    /* ✅ STICKY HEADER */
-    .sticky-header .container {
-      flex-direction: row; /* keep inline */
-      justify-content: space-between;
-    }
-  
-    .sticky-header img {
-      height: 40px;
-    }
-  
-    /* ✅ HERO */
-    .hero {
-      padding: 80px 20px 60px;
-    }
-  
-    .hero h1 {
-      font-size: 30px;
-    }
-  
-    .hero p {
-      font-size: 16px;
-    }
-  
-    /* ✅ SERVICES */
-    .services {
-      padding: 50px 20px;
-    }
-  
-    /* ✅ CONTACT */
-    .contact {
-      padding: 50px 20px;
-    }
-  
-    input, textarea {
-      max-width: 100%;
-    }
-  
-    /* ✅ FOOTER */
-    footer img {
-      height: 80px;
-    }
-  }
   </style>
+
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
 
-  <!-- ✅ MAIN HEADER -->
+  <!-- Main Header -->
   <header class="main-header">
-    <div class="container">
-      <img src="logo.png" alt="Laker Tech Logo">
+    <div class="container header-wrap">
+      <img src="logo.png" alt="Laker Tech Logo" />
 
       <nav>
-        <a href="#services">Services</a>
+        <a href="#who-i-help">Who I Help</a>
+        <a href="#how-i-help">How I Help</a>
+        <a href="#why-trust-me">Why Trust Me</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- ✅ STICKY HEADER -->
+  <!-- Sticky Header -->
   <div class="sticky-header">
-    <div class="container">
-      <img src="logo.png" alt="Laker Tech Logo">
+    <div class="container header-wrap">
+      <img src="logo.png" alt="Laker Tech Logo" />
 
       <nav>
-        <a href="#services">Services</a>
+        <a href="#who-i-help">Who I Help</a>
+        <a href="#how-i-help">How I Help</a>
+        <a href="#why-trust-me">Why Trust Me</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </div>
 
-  <!-- ✅ HERO -->
-  <div class="hero">
-    <h1>Your Trusted Technology Advisor</h1>
-    <p>Clear, practical guidance for confidently navigating complex technology decisions.</p>
-    <a href="#contact" class="btn">Contact Us</a>
-  </div>
-
-  <!-- ✅ SERVICES -->
-  <div id="services" class="services">
-    <div class="service">
-      <h3>Small & Mid-Sized Businesses</h3>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Independent Technology Consulting</span>
+      <h1>Your Trusted Technology Advisor</h1>
       <p>
-      - Growing organizations that need reliable, secure technology
-      <br>
-      - Leaders who want clarity, not conflicting opinions
-      <br>
-      - Teams that have outgrown reactive IT support
+        Clear, practical guidance for businesses and individuals navigating complex technology decisions
+        with greater security, confidence, and clarity.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Schedule a Conversation</a>
+        <a href="#how-i-help" class="btn btn-secondary">See How I Help</a>
+      </div>
+
+      <p class="hero-note">
+        No sales pressure. No vendor agenda. Just experienced guidance.
       </p>
     </div>
+  </section>
 
-    <div class="service">
-      <h3>Individuals & Families</h3>
-      <p>
-      - People concerned about security, privacy, and reliability
-      <br>
-      - Anyone feeling overwhelmed by modern technology choices
-      <br>
-      - Anyone facing a cybersecurity challenge
+  <!-- Who I Help -->
+  <section id="who-i-help" class="section highlight-band">
+    <div class="container">
+      <h2 class="section-title">Helping the people responsible for making technology decisions</h2>
+      <p class="section-intro">
+        Laker Tech serves organizations and individuals who want clear direction, practical solutions,
+        and a more secure path forward.
       </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Small and Mid-Sized Businesses</h3>
+          <p>
+            Practical support for organizations that need experienced technology guidance without adding
+            unnecessary complexity.
+          </p>
+          <ul>
+            <li>Growing businesses that need reliable and secure technology</li>
+            <li>Leaders who want clarity instead of conflicting opinions</li>
+            <li>Teams that have outgrown reactive support and one-off fixes</li>
+            <li>Organizations facing change, modernization, or increased risk</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Individuals and Families</h3>
+          <p>
+            Straightforward help for people who feel overwhelmed by modern technology or concerned about security.
+          </p>
+          <ul>
+            <li>People concerned about privacy, cybersecurity, and reliability</li>
+            <li>Families trying to simplify devices, accounts, and home technology</li>
+            <li>Anyone dealing with a frustrating or messy technology situation</li>
+            <li>People who want a trusted second opinion before making decisions</li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ✅ CONTACT -->
-  <div id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form id="contact-form">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv"></div>
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-      <p style="font-size: 13px; color: #6b7280;">
-        Form intended for general inquiries. Do not submit sensitive or confidential information.
+  <!-- How I Help -->
+  <section id="how-i-help" class="section">
+    <div class="container">
+      <h2 class="section-title">How I Help</h2>
+      <p class="section-intro">
+        Experience-driven guidance across the technology areas that matter most to business continuity,
+        risk reduction, and day-to-day effectiveness.
       </p>
-    </form>
-    <p id="form-status"></p>
-  </div>
 
-  <!-- ✅ FOOTER -->
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Technology Strategy and Advisory</h3>
+          <p>
+            Clear direction aligned to your goals, budget, and real-world operating needs.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Security and Risk Reduction</h3>
+          <p>
+            Practical steps to improve protection, reduce exposure, and strengthen resilience.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Microsoft 365 and Cloud Guidance</h3>
+          <p>
+            Better collaboration, identity, and productivity without unnecessary complexity.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Infrastructure and Operational Stability</h3>
+          <p>
+            More reliable environments that support growth, uptime, and day-to-day operations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Technology Cleanup and Remediation</h3>
+          <p>
+            Untangling outdated, fragile, or overly complicated environments so you can move forward cleanly.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Second Opinions and Project Support</h3>
+          <p>
+            Experienced perspective during product changes, migrations, vendor decisions, and key initiatives.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Trust Me -->
+  <section id="why-trust-me" class="section highlight-band">
+    <div class="container">
+      <h2 class="section-title">Why Trust Me</h2>
+      <p class="section-intro">
+        Built on executive-level IT leadership, strong technical depth, and a practical approach shaped by real responsibility.
+      </p>
+
+      <div class="trust-box">
+        <p style="margin-top: 0; font-size: 18px; color: var(--text);">
+          I bring more than a decade of leadership experience across IT strategy, infrastructure, security,
+          operations, vendor management, and business technology transformation.
+        </p>
+
+        <div class="grid grid-2" style="margin-top: 26px;">
+          <div class="card" style="box-shadow:none;">
+            <h3>Experienced leadership</h3>
+            <ul>
+              <li>Served in senior IT leadership roles supporting both business growth and operational stability</li>
+              <li>Reported to executive leadership and contributed to Board-level communication and planning</li>
+              <li>Led complex initiatives involving ERP, Microsoft 365, cloud platforms, support models, and infrastructure modernization</li>
+            </ul>
+          </div>
+
+          <div class="card" style="box-shadow:none;">
+            <h3>Practical decision-making</h3>
+            <ul>
+              <li>Focused on reducing risk, improving outcomes, and avoiding unnecessary complexity</li>
+              <li>Balanced business priorities with security, supportability, and long-term fit</li>
+              <li>Vendor-neutral guidance centered on what is right for your environment</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="trust-stats">
+          <div class="stat">
+            <strong>10+ years</strong>
+            <span>technology leadership experience</span>
+          </div>
+          <div class="stat">
+            <strong>Executive</strong>
+            <span>business-facing IT leadership background</span>
+          </div>
+          <div class="stat">
+            <strong>SMB to Enterprise</strong>
+            <span>experience across a wide range of environments</span>
+          </div>
+          <div class="stat">
+            <strong>Vendor-Neutral</strong>
+            <span>guidance based on fit, not product sales</span>
+          </div>
+        </div>
+
+        <p style="margin: 26px 0 0; font-weight: 700; color: var(--text);">
+          I do not sell hardware or software. I help you make the right decisions for your situation.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Engagement Model -->
+  <section id="engagement-model" class="section">
+    <div class="container">
+      <h2 class="section-title">Engagement Model</h2>
+      <p class="section-intro">
+        Every engagement starts with a conversation and is shaped around your actual needs.
+      </p>
+
+      <div class="grid grid-3 engagement-steps">
+        <div class="card step-card">
+          <h3>Start with a Conversation</h3>
+          <p>
+            We begin by understanding your situation, priorities, and where you need clarity or support.
+          </p>
+        </div>
+
+        <div class="card step-card">
+          <h3>Right-Sized Support</h3>
+          <p>
+            Support can be a one-time advisory discussion, short-term project help, or an ongoing trusted advisor relationship.
+          </p>
+        </div>
+
+        <div class="card step-card">
+          <h3>Clear Next Steps</h3>
+          <p>
+            The goal is always the same: reduce risk, increase clarity, and help you move forward with confidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="section highlight-band">
+    <div class="container">
+      <h2 class="section-title">What Clients and Colleagues Say</h2>
+      <p class="section-intro">
+        A few examples of the kind of feedback that reflects how I work.
+      </p>
+
+      <div class="grid grid-3">
+        <div class="testimonial">
+          <div class="quote-mark">“</div>
+          <p>
+            Jason brings clarity to complex technology decisions. He focuses on what matters, communicates clearly,
+            and helps people move forward with confidence.
+          </p>
+          <div class="author">Business Leadership Perspective</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="quote-mark">“</div>
+          <p>
+            Practical, knowledgeable, and easy to work with. He avoids unnecessary complexity and keeps the focus on
+            real outcomes.
+          </p>
+          <div class="author">Operations and Technology Perspective</div>
+        </div>
+
+        <div class="testimonial">
+          <div class="quote-mark">“</div>
+          <p>
+            Trusted by both technical teams and business stakeholders because he combines strong technical understanding
+            with sound judgment.
+          </p>
+          <div class="author">Leadership and Team Perspective</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-wrap">
+        <div class="contact-info">
+          <h3>Start a Conversation</h3>
+          <p>
+            If you are facing a technology decision, dealing with a frustrating issue, or simply want an experienced
+            perspective, I would be glad to talk.
+          </p>
+
+          <div class="contact-points">
+            <div>
+              <strong>What to expect</strong><br />
+              A straightforward conversation focused on your goals, concerns, and next steps.
+            </div>
+            <div>
+              <strong>Who this is for</strong><br />
+              Small and mid-sized businesses, individuals, and families looking for trusted guidance.
+            </div>
+            <div>
+              <strong>Approach</strong><br />
+              No sales pressure. No vendor agenda. Just practical advice and thoughtful support.
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Contact Laker Tech</h3>
+          <p>
+            Use the secure form below for general inquiries.
+          </p>
+
+          <form id="contact-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Your name" required />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Your email" required />
+
+            <label for="message">How can I help?</label>
+            <textarea id="message" rows="6" placeholder="Tell me a little about your situation" required></textarea>
+
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv" style="margin: 6px 0 18px;"></div>
+
+            <button type="submit" class="btn btn-primary">Send Message</button>
+
+            <p class="form-note">
+              Form intended for general inquiries. Please do not submit sensitive, confidential, or regulated information.
+            </p>
+          </form>
+
+          <p id="form-status" class="status"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <img src="logo.png" alt="Laker Tech Logo">
-    <p>© 2026 Laker Tech LLC</p>
+    <img src="logo.png" alt="Laker Tech Logo" />
+    <p><strong>Laker Tech LLC</strong></p>
+    <p>Minneapolis - Saint Paul area | Serving clients remotely</p>
+    <p>&copy; 2026 Laker Tech LLC</p>
   </footer>
 
-  <!-- ✅ SCRIPT -->
- <script>
-  // ✅ Sticky header behavior
-  const stickyHeader = document.querySelector(".sticky-header");
+  <script>
+    // Sticky header behavior
+    const stickyHeader = document.querySelector(".sticky-header");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 150) {
-      stickyHeader.classList.add("show");
-    } else {
-      stickyHeader.classList.remove("show");
-    }
-  });
-
-  // ✅ Contact form submission
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const button = form.querySelector("button");
-    button.disabled = true;
-    button.innerText = "Sending...";
-
-    status.innerText = "Sending...";
-
-    const tokenField = document.querySelector('[name="cf-turnstile-response"]');
-    const token = tokenField ? tokenField.value : null;
-
-    const data = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      message: document.getElementById("message").value,
-      token: token
-    };
-
-    if (!data.token) {
-      status.innerText = "❌ Verification failed. Please try again.";
-      button.disabled = false;
-      button.innerText = "Send Message";
-      return;
-    }
-
-    try {
-      const res = await fetch("https://lt-contact-01.jason-schlangen.workers.dev", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (res.ok) {
-        status.innerText = "✅ Message sent successfully!";
-        form.reset();
-
-      } else if (res.status === 400) {
-        status.innerText = "❌ Verification failed. Please try again.";
-
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 140) {
+        stickyHeader.classList.add("show");
       } else {
-        status.innerText = "❌ Something went wrong. Please try again.";
+        stickyHeader.classList.remove("show");
+      }
+    });
+
+    // Contact form submission
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const button = form.querySelector("button");
+      button.disabled = true;
+      button.innerText = "Sending...";
+      status.innerText = "Sending...";
+
+      const tokenField = document.querySelector('[name="cf-turnstile-response"]');
+      const token = tokenField ? tokenField.value : null;
+
+      const data = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim(),
+        token: token
+      };
+
+      if (!data.token) {
+        status.innerText = "Verification failed. Please try again.";
+        button.disabled = false;
+        button.innerText = "Send Message";
+        return;
       }
 
-    } catch (err) {
-      status.innerText = "❌ Network error. Please check your connection and try again.";
-    }
+      try {
+        const res = await fetch("https://lt-contact-01.jason-schlangen.workers.dev", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
 
-    button.disabled = false;
-    button.innerText = "Send Message";
-  });
-</script>
+        if (res.ok) {
+          status.innerText = "Message sent successfully.";
+          form.reset();
+
+          if (window.turnstile) {
+            turnstile.reset();
+          }
+        } else if (res.status === 400) {
+          status.innerText = "Verification failed. Please try again.";
+        } else {
+          status.innerText = "Something went wrong. Please try again.";
+        }
+      } catch (err) {
+        status.innerText = "Network error. Please check your connection and try again.";
+      }
+
+      button.disabled = false;
+      button.innerText = "Send Message";
+    });
+  </script>
 </body>
 </html>
