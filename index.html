@@ -183,10 +183,10 @@
     }
 
     .hero-actions {
-    margin: 40px 0 18px;
-    display: flex;
-    justify-content: center;
-    }  
+      margin: 40px 0 18px;
+      display: flex;
+      justify-content: center;
+    }
 
     .btn {
       display: inline-block;
@@ -400,15 +400,15 @@
     }
 
     .cf-turnstile {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-    margin-bottom: 12px;
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+      margin-bottom: 12px;
     }
 
     .contact-card button {
-    width: 100%;
-    margin-top: 12px;
+      width: 100%;
+      margin-top: 12px;
     }
 
     .form-note {
@@ -538,6 +538,42 @@
 
       .sticky-header nav {
         display: none;
+      }
+
+      /* =======================================================
+         MOBILE FIX - ENGAGEMENT MODEL
+         Stacks badge above heading to prevent overlap
+      ======================================================== */
+      .engagement-steps {
+        gap: 18px;
+      }
+
+      .step-card {
+        padding-top: 22px;
+      }
+
+      .step-card::before {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 0 12px 0;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+
+      .step-card h3,
+      .step-card p {
+        padding-left: 0;
+      }
+
+      .step-card h3 {
+        margin-top: 0;
+        line-height: 1.2;
+      }
+
+      .step-card p {
+        line-height: 1.5;
       }
     }
   </style>
@@ -719,9 +755,9 @@
 
       <div class="trust-box">
         <p style="margin-top: 0; font-size: 18px; color: var(--text);">
-        Laker Tech brings executive-level perspective combined with hands-on technical expertise,
-        shaped by over 20 years of real-world experience across strategy, infrastructure,
-        security, and operations.
+          Laker Tech brings executive-level perspective combined with hands-on technical expertise,
+          shaped by over 20 years of real-world experience across strategy, infrastructure,
+          security, and operations.
         </p>
 
         <div class="grid grid-2" style="margin-top: 26px;">
@@ -839,7 +875,7 @@
           <!-- =====================================================
                TURNSTILE WIDGET
           ====================================================== -->
-          <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv" style="margin: 6px 0 18px;"></div>
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv"></div>
 
           <button type="submit" class="btn btn-primary">Send Message</button>
 
