@@ -1,65 +1,130 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
   <title>Laker Tech</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ✅ Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
+  <!-- =========================================================
+       FAVICON
+       Replace favicon.png if you update branding assets
+  ========================================================== -->
+  <link rel="icon" type="image/png" href="favicon.png" />
 
+  <!-- =========================================================
+       STYLES
+       Inline CSS for simplicity while iterating
+  ========================================================== -->
   <style>
     * {
       box-sizing: border-box;
     }
 
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --primary: #1a73e8;
+      --primary-dark: #1558b0;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.08);
+      --radius: 14px;
+      --max-width: 1100px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       margin: 0;
-      background: #f8fafc;
-      color: #1f2937;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       line-height: 1.6;
     }
 
-    /* ✅ CONTAINER (Fixes width issues globally) */
+    a {
+      color: inherit;
+    }
+
     .container {
-      max-width: 1100px;
+      max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 20px;
+    }
+
+    .section {
+      padding: 84px 0;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      text-align: center;
+      font-size: 36px;
+      line-height: 1.2;
+      letter-spacing: -0.5px;
+    }
+
+    .section-intro {
+      max-width: 780px;
+      margin: 0 auto 42px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================== */
+    .main-header {
+      padding: 34px 0 10px;
+    }
+
+    .header-wrap,
+    .sticky-header .header-wrap {
       display: flex;
       align-items: center;
       justify-content: space-between;
-    }
-
-    /* ✅ TOP HEADER */
-    .main-header {
-      padding: 40px 0;
+      gap: 20px;
     }
 
     .main-header img {
-      height: 220px;
+      height: 210px;
+      display: block;
     }
 
-    /* ✅ NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
     nav a {
-      margin-left: 40px;
       text-decoration: none;
-      color: #1f2937;
+      color: var(--text);
       font-weight: 600;
-      font-size: 20px;
+      font-size: 17px;
     }
 
     nav a:hover {
-      color: #1a73e8;
+      color: var(--primary);
     }
 
-    /* ✅ STICKY HEADER (FIXED WIDTH ISSUE) */
+    /* =========================================================
+       STICKY HEADER
+    ========================================================== */
     .sticky-header {
       position: fixed;
       top: -120px;
       left: 0;
       width: 100%;
-      background: white;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
       z-index: 1000;
       opacity: 0;
@@ -70,353 +135,843 @@
       opacity: 1;
     }
 
-    .sticky-header img {
-      height: 100px;
-    }
-
     .sticky-header .container {
-      padding: 10px 20px;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
-    /* ✅ HERO */
+    .sticky-header img {
+      height: 72px;
+      display: block;
+    }
+
+    .sticky-header nav a {
+      font-size: 15px;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================== */
     .hero {
-      padding: 80px 20px 80px;
       text-align: center;
+      padding: 58px 0 86px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 18px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
     .hero h1 {
-      font-size: 44px;
-      font-weight: 700;
-      margin-bottom: 20px;
-      line-height: 1.2;
-      letter-spacing: -0.5px;
+      max-width: 860px;
+      margin: 0 auto 20px;
+      font-size: 52px;
+      line-height: 1.14;
+      letter-spacing: -0.8px;
     }
 
     .hero p {
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto;
-      margin-bottom: 30px;
-      font-size: 18px;
-      color: #6b7280;
-      border-bottom: 1px solid #e5e7eb;
-      padding-bottom: 25px;
+      color: var(--muted);
+      font-size: 20px;
     }
 
-    /* ✅ BUTTON */
+    .hero-actions {
+      margin: 40px 0 18px;
+      display: flex;
+      justify-content: center;
+    }
+
     .btn {
-      margin-top: 30px;
-      padding: 14px 28px;
-      background: #1a73e8;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
       display: inline-block;
-      font-weight: 600;
-      box-shadow: 0 4px 14px rgba(26,115,232,0.3);
+      padding: 14px 28px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
       transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
     }
 
-    .btn:hover {
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 14px rgba(26, 115, 232, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(26,115,232,0.4);
+      box-shadow: 0 8px 20px rgba(26, 115, 232, 0.3);
     }
 
-    /* ✅ SERVICES */
-    .services {
-      max-width: 1100px;
-      margin: auto;
-      padding: 70px 20px;
+    .hero-note {
+      margin-top: 18px;
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* =========================================================
+       SECTION BACKGROUND BAND
+    ========================================================== */
+    .highlight-band {
+      background: white;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* =========================================================
+       CARD / GRID SYSTEM
+    ========================================================== */
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
+      gap: 24px;
     }
 
-    .service {
-      background: white;
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: var(--radius);
       padding: 30px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(229, 231, 235, 0.8);
+      height: 100%;
     }
 
-    .service:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      letter-spacing: -0.2px;
     }
 
-    .service p {
-      color: #6b7280;
+    .card p {
+      margin: 0;
+      color: var(--muted);
     }
 
-    /* ✅ CONTACT */
-    .contact {
+    .card ul {
+      margin: 14px 0 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .card li + li {
+      margin-top: 8px;
+    }
+
+    /* =========================================================
+       EXPERIENCE
+    ========================================================== */
+    .trust-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .trust-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .stat {
       background: white;
-      padding: 70px 20px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
       text-align: center;
     }
 
-    input, textarea {
-      width: 100%;
-      max-width: 420px;
-      margin: 10px auto;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+    .stat strong {
       display: block;
+      font-size: 28px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .stat span {
+      color: var(--muted);
       font-size: 14px;
     }
 
-    button {
-      background: #1a73e8;
-      color: white;
-      padding: 14px 24px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
+    /* =========================================================
+       ENGAGEMENT MODEL
+    ========================================================== */
+    .engagement-steps {
+      counter-reset: step;
     }
 
-    /* ✅ FOOTER */
-    footer {
+    .step-card {
+      position: relative;
+      padding-top: 58px;
+    }
+
+    .step-card::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #e8f0fe;
+      color: var(--primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* =========================================================
+       CONTACT
+    ========================================================== */
+    .contact-card {
+      background: white;
+      border-radius: 18px;
+      padding: 40px;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid rgba(229, 231, 235, 0.8);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-card h3 {
+      margin: 0 0 14px;
+      font-size: 28px;
       text-align: center;
-      padding: 40px 20px;
-      color: #6b7280;
+    }
+
+    .contact-card p {
+      margin: 0 0 26px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 13.5px;
+      letter-spacing: 0.2px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin: 0 0 14px;
+      padding: 13px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 10px;
+      font-size: 15px;
+      color: var(--text);
+      background: #fff;
+      font-family: inherit;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #93c5fd;
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .cf-turnstile {
+      display: flex;
+      justify-content: center;
+      margin-top: 16px;
+      margin-bottom: 12px;
+    }
+
+    .contact-card button {
+      width: 100%;
+      margin-top: 12px;
+    }
+
+    .form-note {
+      font-size: 12.5px;
+      color: var(--muted);
+      margin-top: 30px;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================== */
+    footer {
       background: white;
       margin-top: 40px;
+      padding: 34px 20px 46px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--muted);
     }
 
     footer img {
-      height: 80px;
-      margin-bottom: 10px;
+      height: 72px;
+      margin-bottom: 12px;
     }
 
-    /* ✅ MOBILE RESPONSIVE FIXES */
-    @media (max-width: 768px) {
-  
-    /* ✅ Container spacing */
-    .container {
-      flex-direction: column;
-      align-items: center;
+    footer p {
+      margin: 6px 0;
     }
-  
-    /* ✅ MAIN HEADER */
-    .main-header {
-      padding: 20px 0;
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================== */
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3,
+      .trust-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .main-header .header-wrap {
+        flex-direction: column;
+      }
+
+      .main-header img {
+        height: 160px;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .sticky-header .header-wrap {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .sticky-header img {
+        height: 50px;
+      }
+
+      .sticky-header nav {
+        gap: 14px;
+      }
+
+      .sticky-header nav a {
+        font-size: 13px;
+      }
+
+      .hero h1 {
+        font-size: 39px;
+      }
+
+      .hero p,
+      .section-intro {
+        font-size: 17px;
+      }
+
+      .section {
+        padding: 68px 0;
+      }
     }
-  
-    .main-header img {
-      height: 160px;
-      margin-bottom: 10px;
+
+    @media (max-width: 640px) {
+      .main-header {
+        padding: 22px 0 6px;
+      }
+
+      .main-header img {
+        height: 135px;
+      }
+
+      nav a {
+        font-size: 15px;
+      }
+
+      .hero {
+        padding: 42px 0 64px;
+      }
+
+      .hero h1 {
+        font-size: 31px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .card,
+      .trust-box,
+      .contact-card {
+        padding: 24px;
+      }
+
+      .sticky-header nav {
+        display: none;
+      }
+
+      /* =======================================================
+         MOBILE FIX - ENGAGEMENT MODEL
+         Stacks badge above heading to prevent overlap
+      ======================================================== */
+      .engagement-steps {
+        gap: 18px;
+      }
+
+      .step-card {
+        padding-top: 22px;
+      }
+
+      .step-card::before {
+        position: relative;
+        top: 0;
+        left: 0;
+        margin: 0 0 12px 0;
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+      }
+
+      .step-card h3,
+      .step-card p {
+        padding-left: 0;
+      }
+
+      .step-card h3 {
+        margin-top: 0;
+        line-height: 1.2;
+      }
+
+      .step-card p {
+        line-height: 1.5;
+      }
     }
-  
-    /* ✅ NAVIGATION */
-    nav {
-      display: flex;
-      gap: 20px;
-    }
-  
-    nav a {
-      margin: 0;
-      font-size: 16px;
-    }
-  
-    /* ✅ STICKY HEADER */
-    .sticky-header .container {
-      flex-direction: row; /* keep inline */
-      justify-content: space-between;
-    }
-  
-    .sticky-header img {
-      height: 40px;
-    }
-  
-    /* ✅ HERO */
-    .hero {
-      padding: 80px 20px 60px;
-    }
-  
-    .hero h1 {
-      font-size: 30px;
-    }
-  
-    .hero p {
-      font-size: 16px;
-    }
-  
-    /* ✅ SERVICES */
-    .services {
-      padding: 50px 20px;
-    }
-  
-    /* ✅ CONTACT */
-    .contact {
-      padding: 50px 20px;
-    }
-  
-    input, textarea {
-      max-width: 100%;
-    }
-  
-    /* ✅ FOOTER */
-    footer img {
-      height: 80px;
-    }
-  }
   </style>
+
+  <!-- =========================================================
+       CLOUDFLARE TURNSTILE
+  ========================================================== -->
   <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
-
 <body>
 
-  <!-- ✅ MAIN HEADER -->
+  <!-- =========================================================
+       MAIN HEADER
+  ========================================================== -->
   <header class="main-header">
-    <div class="container">
-      <img src="logo.png" alt="Laker Tech Logo">
+    <div class="container header-wrap">
+      <img src="logo.png" alt="Laker Tech Logo" />
 
       <nav>
+        <a href="#clients">Clients</a>
         <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- ✅ STICKY HEADER -->
+  <!-- =========================================================
+       STICKY HEADER
+  ========================================================== -->
   <div class="sticky-header">
-    <div class="container">
-      <img src="logo.png" alt="Laker Tech Logo">
+    <div class="container header-wrap">
+      <img src="logo.png" alt="Laker Tech Logo" />
 
       <nav>
+        <a href="#clients">Clients</a>
         <a href="#services">Services</a>
+        <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </div>
 
-  <!-- ✅ HERO -->
-  <div class="hero">
-    <h1>Your Trusted Technology Advisor</h1>
-    <p>Clear, practical guidance for confidently navigating complex technology decisions.</p>
-    <a href="#contact" class="btn">Contact Us</a>
-  </div>
-
-  <!-- ✅ SERVICES -->
-  <div id="services" class="services">
-    <div class="service">
-      <h3>Small & Mid-Sized Businesses</h3>
+  <!-- =========================================================
+       HERO
+       Simplified to a single CTA
+  ========================================================== -->
+  <section class="hero">
+    <div class="container">
+      <span class="eyebrow">Independent Technology Consulting</span>
+      <h1>Your Trusted Technology Advisor</h1>
       <p>
-      - Growing organizations that need reliable, secure technology
-      <br>
-      - Leaders who want clarity, not conflicting opinions
-      <br>
-      - Teams that have outgrown reactive IT support
+        Clear, practical guidance for businesses and individuals navigating complex
+        technology decisions with greater security, confidence, and clarity.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Contact Us</a>
+      </div>
+
+      <p class="hero-note">
+        Experienced perspective when it matters most. No pressure—just informed decisions.
       </p>
     </div>
+  </section>
 
-    <div class="service">
-      <h3>Individuals & Families</h3>
-      <p>
-      - People concerned about security, privacy, and reliability
-      <br>
-      - Anyone feeling overwhelmed by modern technology choices
-      <br>
-      - Anyone facing a cybersecurity challenge
+  <!-- =========================================================
+       CLIENTS
+  ========================================================== -->
+  <section id="clients" class="section highlight-band">
+    <div class="container">
+      <h2 class="section-title">Helping the people responsible for making technology decisions</h2>
+      <p class="section-intro">
+        Laker Tech serves organizations and individuals who want clear direction,
+        practical solutions, and a more secure path forward.
+      </p>
+
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Small and Mid-Sized Businesses</h3>
+          <p>
+            Practical support for organizations that need experienced technology guidance
+            without adding unnecessary complexity.
+          </p>
+          <ul>
+            <li>Growing businesses that need reliable and secure technology</li>
+            <li>Leaders who want clarity instead of conflicting opinions</li>
+            <li>Teams that have outgrown reactive support and one-off fixes</li>
+            <li>Organizations evaluating cloud, security, and modernization efforts</li>
+            <li>Businesses exploring how to leverage AI effectively and responsibly</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Individuals and Families</h3>
+          <p>
+            Straightforward help for people who feel overwhelmed by modern technology
+            or concerned about security.
+          </p>
+          <ul>
+            <li>People concerned about privacy, cybersecurity, and reliability</li>
+            <li>Families trying to simplify devices, accounts, and home technology</li>
+            <li>Anyone dealing with a frustrating or messy technology situation</li>
+            <li>People who want a trusted second opinion before making decisions</li>
+            <li>Individuals navigating new technologies, including AI tools</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SERVICES
+  ========================================================== -->
+  <section id="services" class="section">
+    <div class="container">
+      <h2 class="section-title">Services</h2>
+      <p class="section-intro">
+        Experience-driven guidance across the technology areas that matter most to
+        business continuity, risk reduction, and day-to-day effectiveness.
+      </p>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <h3>Technology Strategy and Advisory</h3>
+          <p>
+            Clear direction aligned to your goals, budget, and real-world operating needs.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Security and Risk Reduction</h3>
+          <p>
+            Practical steps to improve protection, reduce exposure, and strengthen resilience.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Microsoft 365 and Cloud Guidance</h3>
+          <p>
+            Better collaboration, identity, and productivity without unnecessary complexity.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Infrastructure and Operational Stability</h3>
+          <p>
+            Reliable environments that support growth, uptime, and long-term performance.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>AI Advisory and Practical Use</h3>
+          <p>
+            Helping you evaluate, adopt, and use AI tools in ways that are secure,
+            effective, and grounded in real business value.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Technology Cleanup and Remediation</h3>
+          <p>
+            Untangling overly complex or fragile environments so you can move forward with confidence.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       EXPERIENCE
+  ========================================================== -->
+  <section id="experience" class="section highlight-band">
+    <div class="container">
+      <h2 class="section-title">Experience</h2>
+      <p class="section-intro">
+        Built on executive-level IT leadership, strong technical depth, and over 20 years of real-world experience.
+      </p>
+
+      <div class="trust-box">
+        <p style="margin-top: 0; font-size: 18px; color: var(--text);">
+          Laker Tech brings executive-level perspective combined with hands-on technical expertise,
+          shaped by over 20 years of real-world experience across strategy, infrastructure,
+          security, and operations.
+        </p>
+
+        <div class="grid grid-2" style="margin-top: 26px;">
+          <div class="card" style="box-shadow:none;">
+            <h3>Executive leadership experience</h3>
+            <ul>
+              <li>Experience supporting leadership teams and board-level conversations</li>
+              <li>Led complex and transformative technology initiatives across infrastructure, cloud, and business systems</li>
+            </ul>
+          </div>
+
+          <div class="card" style="box-shadow:none;">
+            <h3>Practical and balanced approach</h3>
+            <ul>
+              <li>Focused on clarity, risk reduction, and real-world outcomes</li>
+              <li>Balances technical depth with business priorities</li>
+              <li>Guidance grounded in experience</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="trust-stats">
+          <div class="stat">
+            <strong>20+ years</strong>
+            <span>technology experience</span>
+          </div>
+          <div class="stat">
+            <strong>Executive</strong>
+            <span>business and technical leadership</span>
+          </div>
+          <div class="stat">
+            <strong>SMB to Enterprise</strong>
+            <span>diverse environments</span>
+          </div>
+          <div class="stat">
+            <strong>Practical</strong>
+            <span>experience-driven guidance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       ENGAGEMENT MODEL
+  ========================================================== -->
+  <section id="engagement-model" class="section">
+    <div class="container">
+      <h2 class="section-title">Engagement Model</h2>
+      <p class="section-intro">
+        Every engagement starts with a conversation and is shaped around your actual needs.
+      </p>
+
+      <div class="grid grid-3 engagement-steps">
+        <div class="card step-card">
+          <h3>Understand the Situation</h3>
+          <p>
+            We begin by clarifying your priorities, concerns, and where you need guidance.
+          </p>
+        </div>
+
+        <div class="card step-card">
+          <h3>Right-Sized Support</h3>
+          <p>
+            Support can be a one-time discussion, short-term project help, or an ongoing advisory relationship.
+          </p>
+        </div>
+
+        <div class="card step-card">
+          <h3>Move Forward Clearly</h3>
+          <p>
+            The goal is always the same: reduce risk, improve clarity, and help you make sound decisions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       TESTIMONIALS
+       Commented out for now
+  ========================================================== -->
+  <!--
+  <section id="testimonials" class="section highlight-band">
+    <div class="container">
+      <h2 class="section-title">What Clients and Colleagues Say</h2>
+      <p class="section-intro">
+        Placeholder for future testimonials.
       </p>
     </div>
-  </div>
+  </section>
+  -->
 
-  <!-- ✅ CONTACT -->
-  <div id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form id="contact-form">
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv"></div>
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-      <button type="submit">Send Message</button>
-      <p style="font-size: 13px; color: #6b7280;">
-        Form intended for general inquiries. Do not submit sensitive or confidential information.
-      </p>
-    </form>
-    <p id="form-status"></p>
-  </div>
+  <!-- =========================================================
+       CONTACT
+  ========================================================== -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="contact-card">
+        <h3>Contact Laker Tech</h3>
+        <p>
+          Navigating a technology decision or need a second perspective? Start the conversation here.
+        </p>
 
-  <!-- ✅ FOOTER -->
+        <form id="contact-form">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Your name" required />
+
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Your email" required />
+
+          <label for="message">What would you like to discuss?</label>
+          <textarea id="message" rows="6" placeholder="Share a bit about your situation or what you’re working through" required></textarea>
+
+          <!-- =====================================================
+               TURNSTILE WIDGET
+          ====================================================== -->
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAADbrmAY1d6PRgthv"></div>
+
+          <button type="submit" class="btn btn-primary">Send Message</button>
+
+          <p class="form-note">
+            Form intended for general inquiries. Please do not submit sensitive or confidential information.
+          </p>
+        </form>
+
+        <p id="form-status" class="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       FOOTER
+  ========================================================== -->
   <footer>
-    <img src="logo.png" alt="Laker Tech Logo">
-    <p>© 2026 Laker Tech LLC</p>
+    <img src="logo.png" alt="Laker Tech Logo" />
+    <p>Based in Minneapolis–Saint Paul · Serving clients locally, remotely, and onsite as needed</p>
+    <p>&copy; 2026 Laker Tech LLC</p>
   </footer>
 
-  <!-- ✅ SCRIPT -->
- <script>
-  // ✅ Sticky header behavior
-  const stickyHeader = document.querySelector(".sticky-header");
+  <!-- =========================================================
+       SCRIPT
+       - Sticky header
+       - Contact form submission
+  ========================================================== -->
+  <script>
+    // Sticky header behavior
+    const stickyHeader = document.querySelector(".sticky-header");
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 150) {
-      stickyHeader.classList.add("show");
-    } else {
-      stickyHeader.classList.remove("show");
-    }
-  });
-
-  // ✅ Contact form submission
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const button = form.querySelector("button");
-    button.disabled = true;
-    button.innerText = "Sending...";
-
-    status.innerText = "Sending...";
-
-    const tokenField = document.querySelector('[name="cf-turnstile-response"]');
-    const token = tokenField ? tokenField.value : null;
-
-    const data = {
-      name: document.getElementById("name").value,
-      email: document.getElementById("email").value,
-      message: document.getElementById("message").value,
-      token: token
-    };
-
-    if (!data.token) {
-      status.innerText = "❌ Verification failed. Please try again.";
-      button.disabled = false;
-      button.innerText = "Send Message";
-      return;
-    }
-
-    try {
-      const res = await fetch("https://lt-contact-01.jason-schlangen.workers.dev", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
-
-      if (res.ok) {
-        status.innerText = "✅ Message sent successfully!";
-        form.reset();
-
-      } else if (res.status === 400) {
-        status.innerText = "❌ Verification failed. Please try again.";
-
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 140) {
+        stickyHeader.classList.add("show");
       } else {
-        status.innerText = "❌ Something went wrong. Please try again.";
+        stickyHeader.classList.remove("show");
+      }
+    });
+
+    // Contact form submission
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const button = form.querySelector("button");
+      button.disabled = true;
+      button.innerText = "Sending...";
+      status.innerText = "Sending...";
+
+      const tokenField = document.querySelector('[name="cf-turnstile-response"]');
+      const token = tokenField ? tokenField.value : null;
+
+      const data = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        message: document.getElementById("message").value.trim(),
+        token: token
+      };
+
+      if (!data.token) {
+        status.innerText = "Verification failed. Please try again.";
+        button.disabled = false;
+        button.innerText = "Send Message";
+        return;
       }
 
-    } catch (err) {
-      status.innerText = "❌ Network error. Please check your connection and try again.";
-    }
+      try {
+        const res = await fetch("https://lt-contact-01.jason-schlangen.workers.dev", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
 
-    button.disabled = false;
-    button.innerText = "Send Message";
-  });
-</script>
+        if (res.ok) {
+          status.innerText = "Message sent successfully.";
+          form.reset();
+
+          if (window.turnstile) {
+            turnstile.reset();
+          }
+        } else if (res.status === 400) {
+          status.innerText = "Verification failed. Please try again.";
+        } else {
+          status.innerText = "Something went wrong. Please try again.";
+        }
+      } catch (err) {
+        status.innerText = "Network error. Please check your connection and try again.";
+      }
+
+      button.disabled = false;
+      button.innerText = "Send Message";
+    });
+  </script>
 </body>
 </html>
