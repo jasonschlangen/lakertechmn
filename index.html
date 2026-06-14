@@ -400,8 +400,8 @@
     }
 
     .cf-turnstile {
-    margin-top: 12px;
-    margin-bottom: 10px;
+    margin: 16px auto 10px;
+    display: block;
     }
 
     .contact-card button {
@@ -412,7 +412,7 @@
     .form-note {
       font-size: 12.5px;
       color: var(--muted);
-      margin-top: 18px;
+      margin-top: 22px;
       line-height: 1.5;
       text-align: left;
     }
@@ -446,100 +446,68 @@
     }
 
     /* =========================================================
-       RESPONSIVE
-    ========================================================== */
-    @media (max-width: 900px) {
-      .grid-2,
-      .grid-3,
-      .trust-stats {
-        grid-template-columns: 1fr;
+       MOBILE REFINEMENTS (ENGAGEMENT MODEL + CARDS)
+       Optimizes spacing, alignment, and readability
+      ========================================================= */
+    
+      @media (max-width: 640px) {
+    
+      /* ✅ Section spacing (slightly tighter overall) */
+      .section {
+        padding: 64px 0;
       }
-
-      .main-header .header-wrap {
-        flex-direction: column;
+    
+      /* ✅ Title + intro scaling */
+      .section-title {
+        font-size: 26px;
+        line-height: 1.25;
       }
-
-      .main-header img {
-        height: 160px;
+    
+      .section-intro {
+        font-size: 16px;
+        margin-bottom: 28px;
       }
-
-      nav {
-        justify-content: center;
+    
+      /* ✅ Grid spacing (reduces scroll fatigue) */
+      .grid {
         gap: 18px;
       }
-
-      .sticky-header .header-wrap {
-        flex-direction: row;
-        align-items: center;
+    
+      /* ✅ Card sizing (less bulky on mobile) */
+      .card {
+        padding: 22px;
+        border-radius: 14px;
       }
-
-      .sticky-header img {
-        height: 50px;
+    
+      /* =========================================================
+         STEP CARD (ENGAGEMENT MODEL)
+      ========================================================== */
+    
+      .step-card {
+        padding-top: 64px; /* creates space for number badge */
       }
-
-      .sticky-header nav {
-        gap: 14px;
+    
+      /* ✅ Fix badge overlap + improve placement */
+      .step-card::before {
+        top: 16px;
+        left: 16px;
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
       }
-
-      .sticky-header nav a {
-        font-size: 13px;
+    
+      /* ✅ Add breathing room between badge and text */
+      .step-card h3,
+      .step-card p {
+        padding-left: 10px;
       }
-
-      .hero h1 {
-        font-size: 39px;
+    
+      /* ✅ Improve readability of body text */
+      .step-card p {
+        line-height: 1.5;
       }
-
-      .hero p,
-      .section-intro {
-        font-size: 17px;
-      }
-
-      .section {
-        padding: 68px 0;
-      }
+    
     }
-
-    @media (max-width: 640px) {
-      .main-header {
-        padding: 22px 0 6px;
-      }
-
-      .main-header img {
-        height: 135px;
-      }
-
-      nav a {
-        font-size: 15px;
-      }
-
-      .hero {
-        padding: 42px 0 64px;
-      }
-
-      .hero h1 {
-        font-size: 31px;
-      }
-
-      .hero p {
-        font-size: 16px;
-      }
-
-      .section-title {
-        font-size: 28px;
-      }
-
-      .card,
-      .trust-box,
-      .contact-card {
-        padding: 24px;
-      }
-
-      .sticky-header nav {
-        display: none;
-      }
-    }
-  </style>
-
   <!-- =========================================================
        CLOUDFLARE TURNSTILE
   ========================================================== -->
